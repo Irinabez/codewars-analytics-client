@@ -3,6 +3,7 @@ import { Nav, NavItem } from 'reactstrap';
 import { NavLink, withRouter } from 'react-router-dom';
 import _ from 'lodash';
 import { connect } from 'react-redux';
+import Permission from '../permission/permission';
 
 class MainMenu extends Component {
   render() {
@@ -22,13 +23,13 @@ class MainMenu extends Component {
           </NavItem>
         )}
 
-        {_.has(this.props.userAuthorizedInfo, '_id') && (
+        <Permission perm="quiz.get.all">
           <NavItem>
             <NavLink to="/quiz" activeClassName="active" className="nav-link">
               Quiz
             </NavLink>
           </NavItem>
-        )}
+        </Permission>
 
         {_.has(this.props.userAuthorizedInfo, '_id') && (
           <NavItem>
