@@ -8,7 +8,7 @@ import GroupView from '../modules/group/view/groupView';
 import GroupForm from '../modules/group/form/groupForm';
 
 import QuizList from '../modules/quiz/list/quizList';
-import QuizForm from '../modules/quiz/form/quizForm';
+import QuestionForm from '../modules/quiz/question/form/questionForm';
 
 import UserRegisterForm from '../modules/user/register/userRegisterForm';
 import UserLoginForm from '../modules/user/login/userLoginForm';
@@ -28,7 +28,7 @@ const Routes = () => (
     <Route exact path="/group/edit/:groupId" component={GroupForm} />
 
     <Route exact path="/quiz" component={QuizList} />
-    <Route exact path="/quiz/create" component={QuizForm} />
+    <Route exact path="/quiz/question/create" component={QuestionForm} />
 
     <Route exact path="/users" component={UserList} />
     <Route exact path="/user/login" component={UserLoginForm} />

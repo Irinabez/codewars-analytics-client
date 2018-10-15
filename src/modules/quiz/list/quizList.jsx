@@ -17,8 +17,12 @@ class QuizList extends Component {
         <h1>Quiz</h1>
 
         <Permission perm="quiz.create">
-          <NavLink to="/quiz/create" activeClassName="active" className="btn btn-primary">
-            Create Quiz
+          <NavLink
+            to="/quiz/question/create"
+            activeClassName="active"
+            className="btn btn-primary"
+          >
+            Create Question
           </NavLink>
         </Permission>
       </div>

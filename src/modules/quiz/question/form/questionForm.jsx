@@ -4,15 +4,14 @@ import { connect } from 'react-redux';
 import { Button, Col, Form, Row } from 'reactstrap';
 import { Field, reduxForm } from 'redux-form';
 import _ from 'lodash';
-import { TextField, TextArea } from '../../utils/form/form';
-import { required } from '../../utils/form/validators';
-import { groupGetById, groupUpdateById } from './../_actions/groupActions';
-import { userGetAllLightweight } from './../../user/_actions/userActions';
-import QuizAnswerForm from './quizAnswerForm';
-import GroupFormUserList from './quizAnswerForm';
-import Permission from './../../permission/permission';
+import { TextField, TextArea } from '../../../utils/form/form';
+import { required } from '../../../utils/form/validators';
+import { groupGetById, groupUpdateById } from '../../_actions/groupActions';
+import { userGetAllLightweight } from '../../../user/_actions/userActions';
+import QuestionVariantsForm from './questionVariantsForm';
+import Permission from '../../../permission/permission';
 
-class QuizForm extends Component {
+class QuestionForm extends Component {
   componentDidMount() {
     const groupId = this.props.match.params.groupId;
     if (!_.isEmpty(groupId)) {
@@ -39,7 +38,7 @@ class QuizForm extends Component {
   render() {
     return (
       <Permission perm="quiz.create">
-        {/*<h1>Create Quiz</h1>*/}
+        <h1>Create Question</h1>
 
         <Form onSubmit={this.formSubmit}>
           <Row>
@@ -63,7 +62,7 @@ class QuizForm extends Component {
             </Col>
 
             <Col lg="12" className="mt-4 mt-lg-0">
-              <QuizAnswerForm />
+              <QuestionVariantsForm />
             </Col>
           </Row>
 
@@ -104,5 +103,5 @@ export default compose(
     mapStateToProps,
     mapDispatchToProps
   ),
-  reduxForm({ form: 'quiz' })
-)(QuizForm);
+  reduxForm({ form: 'question' })
+)(QuestionForm);
