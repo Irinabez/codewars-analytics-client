@@ -31,7 +31,7 @@ export const TextArea = ({ input, meta, label, placeholder, description, disable
       />
 
       {meta.invalid &&
-      meta.touched && <div className="invalid-feedback">{meta.error}</div>}
+        meta.touched && <div className="invalid-feedback">{meta.error}</div>}
 
       <small className="form-text text-muted">{description}</small>
     </div>

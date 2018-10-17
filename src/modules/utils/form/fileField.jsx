@@ -6,7 +6,7 @@ export const FileField = ({ input, type, meta: { touched, error, warning } }) =>
   return (
     <div>
       <label htmlFor={input.name}>
-        <input {...input} type={type} multiple/>
+        <input {...input} type={type} multiple />
       </label>
     </div>
   );
