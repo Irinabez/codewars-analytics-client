@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { Button, Col, Row } from 'reactstrap';
 import { Field, reduxForm } from 'redux-form';
 import _ from 'lodash';
-import { TextField } from '../../utils/form/form';
+import TextField from '../../utils/form/textField';
 import { required, codewarsUserLink } from '../../utils/form/validators';
 import { codewarsCheckUser } from '../../codewars/_actions/codewarsActions';
 

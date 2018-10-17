@@ -1,8 +1,9 @@
 import React from 'react';
 import { Button, Col, FormGroup, Row } from 'reactstrap';
 import { Field } from 'redux-form';
-import { Checkbox, TextField } from '../../../utils/form/form';
+import { Checkbox} from '../../../utils/form/checkbox';
 import { required } from '../../../utils/form/validators';
+import TextField from '../../../utils/form/textField';
 
 export const renderVariants = ({ fields, meta: { error, submitFailed } }) => (
   <div>

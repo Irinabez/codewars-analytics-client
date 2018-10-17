@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { Button, Col, Form, Row } from 'reactstrap';
 import { Field, reduxForm } from 'redux-form';
 import _ from 'lodash';
-import { TextField } from '../../../utils/form/form';
+import TextField from '../../../utils/form/textField';
 import { number, required } from '../../../utils/form/validators';
 import Pre from '../../../utils/pre/pre';
 

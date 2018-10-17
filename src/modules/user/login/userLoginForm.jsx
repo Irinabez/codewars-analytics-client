@@ -6,7 +6,7 @@ import { Field, reduxForm } from 'redux-form';
 import { Redirect } from 'react-router';
 import _ from 'lodash';
 import { Helmet } from 'react-helmet';
-import { TextField } from '../../utils/form/form';
+import TextField from '../../utils/form/textField';
 import { email as validEmail, required } from '../../utils/form/validators';
 import { userLogin } from '../_actions/userActions';
 
