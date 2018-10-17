@@ -4,11 +4,12 @@ import { connect } from 'react-redux';
 import { Button, Col, Form, Row } from 'reactstrap';
 import { Field, FieldArray, reduxForm } from 'redux-form';
 import _ from 'lodash';
-import { TextArea, TextField } from '../../../utils/form/form';
-import { required } from '../../../utils/form/validators';
-// import { questionGetById, questionUpdateById } from '../../_actions/questionActions';
+import { TextArea } from '../../../utils/form/textArea';
+import { required, number, minValue1, maxValue5 } from '../../../utils/form/validators';
+import { questionCreate } from '../../_actions/questionActions';
 import { renderVariants } from './questionFormVariants';
 import Permission from '../../../permission/permission';
+import TextField from '../../../utils/form/textField';
 
 class QuestionForm extends Component {
   componentDidMount() {
@@ -21,6 +22,21 @@ class QuestionForm extends Component {
   formSubmit = e => {
     e.preventDefault();
 
+    const {
+      name,
+      description,
+      variants,
+      reward,
+      answerType
+    } = this.props.questionForm.values;
+
+    this.props.questionCreate({
+      name,
+      description,
+      variants: variants.map(el => ({ ...el, correct: el.correct || false })),
+      reward,
+      answerType
+    });
     // const { _id, members } = this.props.questionCurrentInfo;
 
     // this.props.questionUpdateById(_id, {
@@ -56,6 +72,28 @@ class QuestionForm extends Component {
               />
             </Col>
 
+            <Col lg="12">
+              <Field
+                name="reward"
+                type="number"
+                placeholder="Reward"
+                component={TextField}
+                validate={[required, number, minValue1, maxValue5]}
+                defaultValue={1}
+              />
+            </Col>
+
+            <Col lg="12">
+              <Field
+                name="answerType"
+                type="text"
+                placeholder="answerType"
+                component={TextField}
+                validate={[required]}
+                defaultValue="single"
+              />
+            </Col>
+
             <Col lg="12" className="mt-4 mt-lg-0">
               <FieldArray name="variants" component={renderVariants} />
             </Col>
@@ -67,8 +105,7 @@ class QuestionForm extends Component {
                 type="submit"
                 color="primary"
                 disabled={
-                  this.props.questionForm &&
-                  {}.hasOwnProperty.call(this.props.questionForm, 'syncErrors')
+                  this.props.questionForm && _.has(this.props.questionForm, 'syncErrors')
                 }
               >
                 Save
@@ -87,9 +124,10 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
+  questionCreate: form => dispatch(questionCreate(form))
   // questionGetById: questionId => dispatch(questionGetById(questionId)),
   // questionUpdateById: (questionId, questionForm) =>
-  //   dispatch(questionUpdateById(questionId, questionForm))
+  // dispatch(questionUpdateById(questionId, questionForm))
 });
 
 export default compose(

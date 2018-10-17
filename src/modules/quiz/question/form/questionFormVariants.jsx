@@ -20,7 +20,7 @@ export const renderVariants = ({ fields, meta: { error, submitFailed } }) => (
 
         <Col lg="8">
           <Field
-            name={`${variant}.variant`}
+            name={`${variant}.name`}
             type="text"
             placeholder="Answer"
             component={TextField}
