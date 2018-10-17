@@ -2,37 +2,32 @@ import React, { Component } from 'react';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { Button, Col, Form, Row } from 'reactstrap';
-import { Field, reduxForm } from 'redux-form';
+import { Field, FieldArray, reduxForm } from 'redux-form';
 import _ from 'lodash';
-import { TextField, TextArea } from '../../../utils/form/form';
+import { TextArea, TextField } from '../../../utils/form/form';
 import { required } from '../../../utils/form/validators';
-import { groupGetById, groupUpdateById } from '../../_actions/groupActions';
-import { userGetAllLightweight } from '../../../user/_actions/userActions';
-import QuestionVariantsForm from './questionVariantsForm';
+// import { questionGetById, questionUpdateById } from '../../_actions/questionActions';
+import { renderVariants } from './questionFormVariants';
 import Permission from '../../../permission/permission';
 
 class QuestionForm extends Component {
   componentDidMount() {
-    const groupId = this.props.match.params.groupId;
-    if (!_.isEmpty(groupId)) {
-      this.props.groupGetById(groupId);
-    }
-
-    if (_.isEmpty(this.props.userListLightweight)) {
-      this.props.userGetAllLightweight();
-    }
+    const { questionId } = this.props.match.params;
+    // if (!_.isEmpty(questionId)) {
+    //   this.props.questionGetById(questionId);
+    // }
   }
 
   formSubmit = e => {
     e.preventDefault();
 
-    const { _id, members } = this.props.groupCurrentInfo;
+    // const { _id, members } = this.props.questionCurrentInfo;
 
-    this.props.groupUpdateById(_id, {
-      name: this.props.groupForm.values.name,
-      description: this.props.groupForm.values.description,
-      members
-    });
+    // this.props.questionUpdateById(_id, {
+    //   name: this.props.questionForm.values.name,
+    //   description: this.props.questionForm.values.description
+    //   // members
+    // });
   };
 
   render() {
@@ -62,7 +57,7 @@ class QuestionForm extends Component {
             </Col>
 
             <Col lg="12" className="mt-4 mt-lg-0">
-              <QuestionVariantsForm />
+              <FieldArray name="variants" component={renderVariants} />
             </Col>
           </Row>
 
@@ -72,8 +67,8 @@ class QuestionForm extends Component {
                 type="submit"
                 color="primary"
                 disabled={
-                  this.props.groupForm &&
-                  {}.hasOwnProperty.call(this.props.groupForm, 'syncErrors')
+                  this.props.questionForm &&
+                  {}.hasOwnProperty.call(this.props.questionForm, 'syncErrors')
                 }
               >
                 Save
@@ -87,15 +82,14 @@ class QuestionForm extends Component {
 }
 
 const mapStateToProps = state => ({
-  groupForm: state.form.group,
-  groupCurrentInfo: state.group.groupCurrentInfo,
-  userListLightweight: state.user.userListLightweight
+  questionForm: state.form.question
+  // questionCurrentInfo: state.question.questionCurrentInfo
 });
 
 const mapDispatchToProps = dispatch => ({
-  groupGetById: groupId => dispatch(groupGetById(groupId)),
-  userGetAllLightweight: () => dispatch(userGetAllLightweight()),
-  groupUpdateById: (groupId, groupForm) => dispatch(groupUpdateById(groupId, groupForm))
+  // questionGetById: questionId => dispatch(questionGetById(questionId)),
+  // questionUpdateById: (questionId, questionForm) =>
+  //   dispatch(questionUpdateById(questionId, questionForm))
 });
 
 export default compose(

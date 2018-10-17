@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link, NavLink, withRouter } from 'react-router-dom';
-import { groupGetAll } from '../_actions/groupActions';
+// import { groupGetAll } from '../_actions/groupActions';
 import { ListGroup, ListGroupItem, Badge, NavItem } from 'reactstrap';
 import { Row, Col } from 'reactstrap';
 import Permission from './../../permission/permission';
@@ -35,7 +35,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  groupGetAll: () => dispatch(groupGetAll())
+  // groupGetAll: () => dispatch(groupGetAll())
 });
 
 export default withRouter(
